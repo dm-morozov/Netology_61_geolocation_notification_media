@@ -1,42 +1,250 @@
 /* Общие стили для страницы */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f4f5f7;
-    color: #333;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f5f7;
+  color: #333;
 }
 
 /* Стили для заголовков */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    color: #444;
-    margin: 20px 0;
-    text-align: center;
-}
-
 h1 {
   font-size: 24px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
-/* Стили для ссылок */
-a {
-    color: #0079bf;
-    text-decoration: none;
-    transition: color 0.3s ease;
+h1 a {
+  color: #0079bf;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-a:hover {
-    color: #0056b3;
+h1 a:hover {
+  color: #0056b3;
 }
 
-strong {
-    font-weight: 500;
-}
+/* --- Контейнер приложения --- */
 
 .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* --- Контейнер для ленты и ввода --- */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+/* --- Контейнер для постов --- */
+
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+  background-color: #fafafa;
+}
+
+/* Общие стили для поста */
+.post {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.post-header {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.post-date {
+  margin: 0;
+}
+
+.post-content-wrapper {
+  flex-grow: 1; /* Позволяет контенту занимать все доступное место */
+  margin-bottom: 10px;
+}
+
+.post-text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-wrap; /* Сохраняет переносы строк в тексте */
+}
+
+.post-footer {
+  text-align: left;
+}
+
+.post-coords {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+.post-audio, .post-video {
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fff;
+}
+
+#post-input {
+  flex-grow: 1; /* Растянуть на всю доступную ширину */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#post-input:focus {
+  border-color: #0079bf;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-left: 15px;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+/* --- Стили для модального окна --- */
+
+.modal-geoposition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden; /* По умолчанию скрыто */
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease;
+}
+
+.modal-geoposition.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-content h4 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.modal-content p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+#coords-input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.controls-btn {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.controls-btn button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+#cancel-geoposition {
+  background-color: #ccc;
+  color: #333;
+}
+
+#cancel-geoposition:hover {
+  background-color: #bbb;
+}
+
+#ok-geoposition {
+  background-color: #0079bf;
+  color: #fff;
+}
+
+#ok-geoposition:hover {
+  background-color: #0056b3;
+}
+
+/* Для отладки */
+.hidden {
+  display: none;
+}
+
+.recording-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.timer {
+  font-size: 16px;
+  color: #555;
+  font-weight: bold;
 }

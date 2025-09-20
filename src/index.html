@@ -14,7 +14,31 @@
                 Домашнее задание к занятию "10. Geolocation, Notification, Media"
             </a>
         </h1>
+        <div class="timeline-container">
+            <div id="posts-container" class="posts-container">
+                <!-- Сюда будут попадать все посты через TS -->
+            </div>
+            <div class="input-container">
+                <input type="text" id="post-input" placeholder="Введите текст поста..." />
+                <div class="controls">
+                    <button id="audio-btn">🎤</button>
+                    <button id="video-btn">📸</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="modal-geoposition" id="modal-geoposition">
+        <div class="modal-content">
+            <h4>Что-то пошло не так</h4>
+            <p>К сожалению, нам не удалось определить ваше местоположение, пожалуйста, дайте разрешение на использование геолокации, либо введите координаты вручную.</p>
+            <p>Широта и долгота через запятую:</p>
+            <input type="text" id="coords-input" placeholder="Широта, Долгота">
+            <div class="controls-btn">
+                <button id="cancel-geoposition">Отмена</button>
+                <button id="ok-geoposition">OK</button>
+            </div>
+        </div>
     </div>
 </body>
 
