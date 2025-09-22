@@ -29,7 +29,8 @@ export default class Modal {
 
   async show() {
     this.modalElement.classList.add("show");
-    this.coordsInput.value = "";
+    this.coordsInput.value = "51.50851, -0.12572";
+    this.coordsInput.select();
 
     return new Promise<string | null>((resolve) => {
       const handleOk = () => {
