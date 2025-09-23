@@ -12,8 +12,9 @@ import { Coords } from "./Post";
 export function parseCoords(coordsString: string): Coords {
   // Отчистим нашу строку от мусора
   const sanitizedString = coordsString
-    .replace(/[^\d.,-]/g, "") // оставляем только d-цифры, точка, запятая и тире
-    .replace(/\s+/g, ""); // Пробелы тоже уберем
+    .replace(/[^\d.,-−]/g, "") // оставляем d-цифры, точку, запятую, дефис, юникод-минус и скобки
+    .replace(/\s+/g, "") // Пробелы тоже уберем
+    .replace(/[[\]]/g, ""); // Убирае скобки
 
   const coordsObj = sanitizedString.split(",");
 
@@ -23,6 +24,10 @@ export function parseCoords(coordsString: string): Coords {
   const latitude = Number.parseFloat(coordsObj[0]);
   const longitude = Number.parseFloat(coordsObj[1]);
   console.log(latitude, longitude);
+
+  if (isNaN(latitude) || isNaN(longitude)) {
+    throw new Error("Неверный формат координат. Ожидается 'ширина, долгота'");
+  }
 
   // валидация на диапазон значений
   if (latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180) {
